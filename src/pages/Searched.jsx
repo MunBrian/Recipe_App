@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const Searched = () => {
   const [searchedRecipes, setSearchedRecipes] = useState([])
@@ -24,7 +25,11 @@ const Searched = () => {
 
 
   return (
-    <Grid>
+    <Grid animate={{ opacity: 1 }}
+      initial={{ opcaity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}>
+      
       {searchedRecipes.map(item => {
         return (    
           <Card key={item.id}>
@@ -39,7 +44,7 @@ const Searched = () => {
   )
 }
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-gap: 3rem;
